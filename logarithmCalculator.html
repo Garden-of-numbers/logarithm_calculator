@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Logarytmów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .formula {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .formula span {
+            vertical-align: middle;
+        }
+        input[type="text"] {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 18px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Zwykły logarytm -->
+        <h3>Zwykły logarytm</h3>
+        <div class="formula">
+            log<sub><input type="text" id="base" placeholder="x"></sub>(<input type="text" id="logarithm" placeholder="b">)
+        </div>
+        <button onclick="calculateLogarithm()">Oblicz logarytm</button>
+        
+        <!-- Logarytm iloczynu -->
+        <h3>Logarytm iloczynu</h3>
+        <div class="formula">
+            log<sub><input type="text" id="base_mul" placeholder="x"></sub>(<input type="text" id="log1_mul" placeholder="a"> &times; <input type="text" id="log2_mul" placeholder="b">)
+        </div>
+        <button onclick="calculateLogOfProduct()">Oblicz logarytm iloczynu</button>
+        
+        <!-- Logarytm ilorazu -->
+        <h3>Logarytm ilorazu</h3>
+        <div class="formula">
+            log<sub><input type="text" id="base_div" placeholder="x"></sub>(<input type="text" id="log1_div" placeholder="a"> / <input type="text" id="log2_div" placeholder="b">)
+        </div>
+        <button onclick="calculateLogOfQuotient()">Oblicz logarytm ilorazu</button>
+
+        <!-- Logarytm potęgi -->
+        <h3>Logarytm potęgi</h3>
+        <div class="formula">
+            log<sub><input type="text" id="base_pow" placeholder="x"></sub>(<input type="text" id="log_pow" placeholder="a">^<input type="text" id="exponent" placeholder="n">)
+        </div>
+        <button onclick="calculateLogOfPower()">Oblicz logarytm potęgi</button>
+    </div>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateLogarithm() {
+            const base = parseFloat(document.getElementById("base").value);
+            const logarithm = parseFloat(document.getElementById("logarithm").value);
+
+            if (isNaN(base) || isNaN(logarithm)) {
+                document.getElementById("result").innerHTML = "Proszę wprowadzić prawidłowe liczby.";
+                return;
+            }
+
+            if (base <= 0 || logarithm <= 0 || base === 1) {
+                document.getElementById("result").innerHTML = "Podstawa i liczba muszą być dodatnie, a podstawa nie może być równa 1.";
+                return;
+            }
+
+            const result = Math.log(logarithm) / Math.log(base);
+            document.getElementById("result").innerHTML = `Wynik logarytmu: ${result.toFixed(2)}`;
+        }
+
+        function calculateLogOfProduct() {
+            const base = parseFloat(document.getElementById("base_mul").value);
+            const log1 = parseFloat(document.getElementById("log1_mul").value);
+            const log2 = parseFloat(document.getElementById("log2_mul").value);
+
+            if (isNaN(base) || isNaN(log1) || isNaN(log2)) {
+                document.getElementById("result").innerHTML = "Proszę wprowadzić prawidłowe liczby.";
+                return;
+            }
+
+            if (base <= 0 || log1 <= 0 || log2 <= 0 || base === 1) {
+                document.getElementById("result").innerHTML = "Podstawa i liczby muszą być dodatnie, a podstawa nie może być równa 1.";
+                return;
+            }
+
+            const result = (Math.log(log1) + Math.log(log2)) / Math.log(base);
+            document.getElementById("result").innerHTML = `Wynik logarytmu iloczynu: ${result.toFixed(2)}`;
+        }
+
+        function calculateLogOfQuotient() {
+            const base = parseFloat(document.getElementById("base_div").value);
+            const log1 = parseFloat(document.getElementById("log1_div").value);
+            const log2 = parseFloat(document.getElementById("log2_div").value);
+
+            if (isNaN(base) || isNaN(log1) || isNaN(log2)) {
+                document.getElementById("result").innerHTML = "Proszę wprowadzić prawidłowe liczby.";
+                return;
+            }
+
+            if (base <= 0 || log1 <= 0 || log2 <= 0 || base === 1) {
+                document.getElementById("result").innerHTML = "Podstawa i liczby muszą być dodatnie, a podstawa nie może być równa 1.";
+                return;
+            }
+
+            const result = (Math.log(log1) - Math.log(log2)) / Math.log(base);
+            document.getElementById("result").innerHTML = `Wynik logarytmu ilorazu: ${result.toFixed(2)}`;
+        }
+
+        function calculateLogOfPower() {
+            const base = parseFloat(document.getElementById("base_pow").value);
+            const log = parseFloat(document.getElementById("log_pow").value);
+            const exponent = parseFloat(document.getElementById("exponent").value);
+
+            if (isNaN(base) || isNaN(log) || isNaN(exponent)) {
+                document.getElementById("result").innerHTML = "Proszę wprowadzić prawidłowe liczby.";
+                return;
+            }
+
+            if (base <= 0 || log <= 0 || base === 1) {
+                document.getElementById("result").innerHTML = "Podstawa i liczba muszą być dodatnie, a podstawa nie może być równa 1.";
+                return;
+            }
+
+            const result = (exponent * Math.log(log)) / Math.log(base);
+            document.getElementById("result").innerHTML = `Wynik logarytmu potęgi: ${result.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
+
+
+
