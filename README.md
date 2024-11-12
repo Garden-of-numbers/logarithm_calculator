@@ -1,2 +1,2 @@
 # logarithm_calculator
-Simple logarithm calculator. Made with Chat GPT. PL version so far...
+Simple logarithm calculator. PL&ENG language version. Made fully with Chat GPT.
