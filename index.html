@@ -120,14 +120,14 @@
                 "result-error": "Proszę wprowadzić prawidłowe liczby."
             },
             "en": {
-                "title-logarithm": "Basic logarithm",
-                "title-product": "Logarithm of product",
-                "title-quotient": "Logarithm of quotient",
-                "title-power": "Logarithm of power",
-                "btn-calculate-log": "Calculate logarithm",
-                "btn-calculate-product": "Calculate product logarithm",
-                "btn-calculate-quotient": "Calculate quotient logarithm",
-                "btn-calculate-power": "Calculate power logarithm",
+                "title-logarithm": "Basic Logarithm",
+                "title-product": "Logarithm of Product",
+                "title-quotient": "Logarithm of Quotient",
+                "title-power": "Logarithm of Power",
+                "btn-calculate-log": "Calculate Logarithm",
+                "btn-calculate-product": "Calculate Product Logarithm",
+                "btn-calculate-quotient": "Calculate Quotient Logarithm",
+                "btn-calculate-power": "Calculate Power Logarithm",
                 "result-error": "Please enter valid numbers."
             }
         };
@@ -155,10 +155,24 @@
             document.getElementById("result-power").innerText = '';
         }
 
+        // Function to convert fraction string (e.g., "1/2") to a decimal number
+        function parseFraction(input) {
+            if (input.includes("/")) {
+                const parts = input.split("/");
+                const numerator = parseFloat(parts[0]);
+                const denominator = parseFloat(parts[1]);
+                if (denominator === 0) {
+                    return NaN;
+                }
+                return numerator / denominator;
+            }
+            return parseFloat(input); // If not a fraction, just parse the number
+        }
+
         function calculateLogarithm() {
             clearResult();
-            const base = parseFloat(document.getElementById("base").value);
-            const logarithm = parseFloat(document.getElementById("logarithm").value);
+            const base = parseFraction(document.getElementById("base").value);
+            const logarithm = parseFraction(document.getElementById("logarithm").value);
 
             if (isNaN(base) || isNaN(logarithm) || base <= 0 || logarithm <= 0 || base === 1) {
                 displayError("result-log");
@@ -172,9 +186,9 @@
 
         function calculateLogOfProduct() {
             clearResult();
-            const base = parseFloat(document.getElementById("base_mul").value);
-            const log1 = parseFloat(document.getElementById("log1_mul").value);
-            const log2 = parseFloat(document.getElementById("log2_mul").value);
+            const base = parseFraction(document.getElementById("base_mul").value);
+            const log1 = parseFraction(document.getElementById("log1_mul").value);
+            const log2 = parseFraction(document.getElementById("log2_mul").value);
 
             if (isNaN(base) || isNaN(log1) || isNaN(log2) || base <= 0 || log1 <= 0 || log2 <= 0 || base === 1) {
                 displayError("result-product");
@@ -188,9 +202,9 @@
 
         function calculateLogOfQuotient() {
             clearResult();
-            const base = parseFloat(document.getElementById("base_div").value);
-            const log1 = parseFloat(document.getElementById("log1_div").value);
-            const log2 = parseFloat(document.getElementById("log2_div").value);
+            const base = parseFraction(document.getElementById("base_div").value);
+            const log1 = parseFraction(document.getElementById("log1_div").value);
+            const log2 = parseFraction(document.getElementById("log2_div").value);
 
             if (isNaN(base) || isNaN(log1) || isNaN(log2) || base <= 0 || log1 <= 0 || log2 <= 0 || base === 1) {
                 displayError("result-quotient");
@@ -204,9 +218,9 @@
 
         function calculateLogOfPower() {
             clearResult();
-            const base = parseFloat(document.getElementById("base_pow").value);
-            const log = parseFloat(document.getElementById("log_pow").value);
-            const exponent = parseFloat(document.getElementById("exponent").value);
+            const base = parseFraction(document.getElementById("base_pow").value);
+            const log = parseFraction(document.getElementById("log_pow").value);
+            const exponent = parseFraction(document.getElementById("exponent").value);
 
             if (isNaN(base) || isNaN(log) || isNaN(exponent) || base <= 0 || log <= 0 || base === 1) {
                 displayError("result-power");
