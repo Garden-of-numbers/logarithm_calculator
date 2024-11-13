@@ -1,4 +1,4 @@
 # logarithm_calculator
-Prosty kalkulator logarytmów. Polska i angielska wersja językowa(jak narazie). Zrobiony całkowicie przez CHAT GPT. Najlepiej dokonywać prostych kalkulacji. Szukam błędów.
+Prosty kalkulator logarytmów. Polska i angielska wersja językowa(jak na razie). Zrobiony całkowicie przez CHAT GPT. Najlepiej dokonywać prostych kalkulacji. Szukam błędów.
 
 Simple logarithm calculator. PL&ENG language version(so far). Made fully with Chat GPT. It is the best to make simple calculations with it. I'm looking for mistakes.
